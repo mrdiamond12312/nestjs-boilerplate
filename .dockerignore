@@ -1,0 +1,9 @@
+node_modules
+dist
+.git
+.env.archive.*
+.env.example
+
+.flaskenv*
+!.env.project
+!.env.vault
