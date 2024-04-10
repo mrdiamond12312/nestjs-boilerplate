@@ -45,7 +45,7 @@ cp .env.example .env
 ```bash
 make up
 ```
-The above script will do 3 things:
+The above script will do 3 things using docker-compose:
 - Set up the database (PostGreSQL -> port 5432).
 - Set up database management tool (PgAdmin 4 -> port 5555)
 - Build and expose the server through port 3000 (localhost:3000/api/v1/documentation to access Swagger)
