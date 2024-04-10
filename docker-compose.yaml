@@ -1,7 +1,7 @@
 version: "3"
 
 networks:
-  app-net:
+  api-network:
     driver: bridge
 
 services:
@@ -14,7 +14,7 @@ services:
     environment:
       DB_HOST: postgres
     networks:
-      - neighbor-net
+      - api-network
     depends_on:
       postgres:
         condition: service_healthy
@@ -35,7 +35,7 @@ services:
       - "5432:5432"
     # May give error on windows
     networks:
-      - neighbor-net
+      - api-network
     volumes:
       - ./db-data/postgresql:/var/lib/postgresql/data
       - ./init-data.sh:/docker-entrypoint-initdb.d/init-data.sh
@@ -51,7 +51,7 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     networks:
-      - neighbor-net
+      - api-network
     depends_on:
       - postgres
     ports:

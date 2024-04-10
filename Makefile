@@ -1,5 +1,7 @@
 alias = e-neighbor
 
+CONTAINER := api
+
 ifeq (create-migrate,$(firstword $(MAKECMDGOALS)))
   # use the rest as arguments for "run"
   MIGRATION_NAME := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
@@ -48,19 +50,19 @@ generate-migrate:
 	npm run migration:generate --  ${MIGRATION_NAME}
 
 generate-seed-container:
-	docker-compose exec e-neighbor-api npm run seed:run
+	docker-compose exec ${CONTAINER} npm run seed:run
 
 compose-up-migrate:
-	docker-compose exec e-neighbor-api npm run migration:run
+	docker-compose exec ${CONTAINER} npm run migration:run
 
 compose-create-migrate:
-	docker-compose exec e-neighbor-api npm run migration:create
+	docker-compose exec ${CONTAINER} npm run migration:create
 
 compose-generate-migrate:
-	docker-compose exec e-neighbor-api npm run migration:generate
+	docker-compose exec ${CONTAINER} npm run migration:generate
 
 compose-seed-run:
-	docker-compose exec e-neighbor-api npm run seed:run
+	docker-compose exec ${CONTAINER} npm run seed:run
 
 fork-kill-dev:
 	lsof -t -i tcp:3000 | xargs kill

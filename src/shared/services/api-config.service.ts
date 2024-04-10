@@ -54,6 +54,11 @@ export class ApiConfigService {
     return this.getString('FALLBACK_LANGUAGE');
   }
 
+  get apiPrefix(): string {
+    const apiVersion = this.getString('API_VERSION');
+    return ['/api', apiVersion].join('/');
+  }
+
   get postgresConfig(): TypeOrmModuleOptions {
     return {
       entities: [
