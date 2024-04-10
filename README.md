@@ -25,6 +25,7 @@
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Personal Boilerplate
 
 ## Installation
 
@@ -32,41 +33,32 @@
 $ npm install
 ```
 
-## Running the app
+## Makefile User (GNU chocolatey make for Windows/MacOS/Linux)
 
+### Create .env file
+Copy and rename .env.example file to .env
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+cp .env.example .env
 ```
 
-## Test
-
+### Running docker-compose
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+make up
 ```
+The above script will do 3 things:
+- Set up the database (PostGreSQL -> port 5432).
+- Set up database management tool (PgAdmin 4 -> port 5555)
+- Build and expose the server through port 3000 (localhost:3000/api/v1/documentation to access Swagger)
 
-## Support
+### Generate migrations
+```base
+make compose-generate-migrate
+```
+Anytime you add a module with new entity, or changing an entity in an existing module, you will need to run this script to create a migration, which will be read by TypeORM on starting the server to update the Database in our container.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Repo's createdby
+- [Nice](https://github.com/mrdiamond12312)
+- [thuanbkk20](https://github.com/thuanbkk20)
 
 ## License
 
